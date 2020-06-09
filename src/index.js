@@ -1,3 +1,5 @@
-import utils from "./common/utils";
-
-export default utils;
+var utils = {}
+if(window !== undefined){
+    utils = require('./common/utils')
+}
+module.exports.utils = utils;
