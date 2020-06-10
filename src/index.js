@@ -1,5 +1,5 @@
 var utils = {}
 if(window !== undefined){
-    utils = require('./common/utils')
+    utils = require('../dist/utils')
 }
 module.exports.utils = utils;
