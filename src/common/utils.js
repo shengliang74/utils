@@ -5,12 +5,12 @@ export function isArray(obj) {
 }
 
 // 是否为对象
-export function isObject() {
+export function isObject(obj) {
     return Object.prototype.toString.call(obj) === '[object Object]'
 }
 
 // 是否为空对象
-export function isEmptyObject(obj) {
+export function isEmptyObject(data) {
     try {
         return JSON.stringify(data) === '{}';
     } catch (e) {
@@ -42,6 +42,7 @@ export function isExtraIphone() {
 
 // 是否为iphone
 export function isIphone() {
+    const UA = navigator.userAgent;
     return /iphone/gi.test(UA);
 }
 
@@ -219,5 +220,24 @@ export function isHaveChinese(data) {
 //是否全是中文
 export function isChinese(data) {
     return /^[\u4e00-\u9fa5]+$/.test(data) ? true : false;
+}
+
+// json转arr
+export function transJsonToArr(json, keyName, valueName) {
+    let arr = [];
+    keyName = keyName || 'key';
+    valueName = valueName || 'value';
+
+    if (isObject(json) && !isEmptyObject(json)) {
+        for (let key in json) {
+            if (json.hasOwnProperty(key)) {
+                let j = {};
+                j[keyName] = key;
+                j[valueName] = json[key];
+                arr.push(j)
+            }
+        }
+    }
+    return arr
 }
 
