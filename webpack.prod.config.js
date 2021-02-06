@@ -5,4 +5,9 @@ const base = require('./webpack.base.config')
 
 module.exports = merge(base, {
     mode: 'production',
+    entry: path.join(__dirname, './src/index.js'),
+    output: {
+        library: 'utils',
+        libraryTarget: 'commonjs2'
+    }
 })

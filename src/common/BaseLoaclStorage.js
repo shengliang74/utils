@@ -1,5 +1,5 @@
 var BaseLocalStorage = function(preId, timeSign){
-    this.preId = preId;
+    this.preId = preId || '';
     this.timeSign = timeSign || '|-|';
 }
 BaseLocalStorage.prototype = {
@@ -26,7 +26,7 @@ BaseLocalStorage.prototype = {
         }catch(e){
             status = this.status.OVERFLOW
         }
-        callback && callback.call(this,status,key,value)
+        typeof callback === 'function' && callback.call(this,status,key,value)
     },
     get: function(key, callback){
         var status = this.status.SUCCESS,
@@ -44,7 +44,7 @@ BaseLocalStorage.prototype = {
                 status: that.status.FAILURE,
                 value: null
             }
-            callback && callback.call(this, result.status, result.value);
+            typeof callback === 'function' && callback.call(this, result.status, result.value);
             return result;
         }
         if(value){
@@ -64,7 +64,7 @@ BaseLocalStorage.prototype = {
             status: status,
             value: value
         };
-        callback && callback.call(this, result.status, result.value);
+        typeof callback === 'function' && callback.call(this, result.status, result.value);
         return result;
     },
     remove: function(key,callback){
@@ -80,7 +80,7 @@ BaseLocalStorage.prototype = {
                 status = this.status.SUCCESS;
             }catch(e){}
         }
-        callback && callback.call(this, status, status > 0 ? null : value.slice(value.indexOf(this.timeSign) + this.timeSign.length))
+        typeof callback === 'function' && callback.call(this, status, status > 0 ? null : value.slice(value.indexOf(this.timeSign) + this.timeSign.length))
     }
 }
 

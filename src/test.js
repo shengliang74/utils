@@ -1,0 +1,2 @@
+import {BaseLocalStorage} from './index';
+

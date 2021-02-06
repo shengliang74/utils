@@ -46,6 +46,23 @@ export function isIphone() {
     return /iphone/gi.test(UA);
 }
 
+// 判断ios终端
+const isIos = () => {
+    let u = navigator.userAgent
+    return !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
+}
+
+// 判断Android终端
+const isAndroid = () => {
+    let u = navigator.userAgent
+    return u.indexOf('Android') > -1 || u.indexOf('Adr') > -1
+}
+
+// 是否为浏览器环境
+const isInBrowser = function(){
+    return typeof window !== 'undefined';
+}
+
 // 获取手机系统
 export function getOSplatform() {
     const ua = navigator.userAgent;
@@ -82,9 +99,9 @@ export function getUrlParams(url = location.href) {
 /**
  解析一个url或者一个url片段
  {
-     path: '',
-     search: '',
-     hash: ''
+    path: '',
+    search: '',
+    hash: ''
  }
  */
 export function parseUrl(url) {
@@ -173,20 +190,6 @@ export function getCookieFn(name) {
     return null;
 }
 
-// 给Element添加样式
-export function addStyle(obj = {}) {
-    const styleMap = {
-        backgroundImage: 'url({#backgroundImage})'
-    };
-    Object.keys(obj).map(item => {
-        if (!obj[item]) {
-            delete obj[item];
-        } else if (styleMap[item]) {
-            obj[item] = styleMap[item].replace(/\{#([^}]+)\}/, obj[item]);
-        }
-    });
-    return obj;
-}
 
 /**
  * 传入string, 返回首字母大写的string;
@@ -241,3 +244,48 @@ export function transJsonToArr(json, keyName, valueName) {
     return arr
 }
 
+// 下载文件
+export function downFile(url, params) {
+    let search = null, href = null;
+    if (isObject(params) && !isEmptyObject(params)) {
+        search = Object.keys(params).map(key => `${key}=${encodeURIComponent(isUndefined(params[key]) ? '' : params[key])}`).join('&');
+    }
+    if (search) {
+        href = `${url}?${search}`;
+    } else {
+        href = `${url}`;
+    }
+    const tempLink = document.createElement('a');
+    tempLink.style.display = 'none';
+    tempLink.href = href;
+    document.body.appendChild(tempLink);
+    tempLink.click()
+    document.body.removeChild(tempLink);
+}
+
+// 获取整数部分
+const getInteger = (num) => {
+    const arr = `${num}`.split('.')
+    return arr[0]
+}
+
+// 获取小数部分
+const getDecimal = (num) => {
+    const arr = `${num}`.split('.')
+    return arr[1]
+}
+
+
+// 是否支持position:sticky
+export function isSupportSticky() {
+    const vendorList = ['', '-webkit-', '-ms-', '-moz-', '-o-'];
+    const vendorListLength = vendorList.length;
+    const stickyElement = document.createElement('div');
+    for (let i = 0; i < vendorListLength; i++) {
+        stickyElement.style.position = `${vendorList[i]}sticky`
+        if (stickyElement.style.position !== '') {
+            return true;
+        }
+    }
+    return false;
+}
