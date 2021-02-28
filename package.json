@@ -1,6 +1,6 @@
 {
   "name": "@shengliang74/utils",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "utils library",
   "main": "index.js",
   "scripts": {
@@ -33,6 +33,5 @@
   },
   "node": {
     "fs": "empty"
-  },
-  "dependencies": {}
+  }
 }
