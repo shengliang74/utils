@@ -1,2 +1,4 @@
-import {BaseLocalStorage} from './index';
+import {BaseLocalStorage} from '../index';
 
+let bs = new BaseLocalStorage();
+console.log(bs)

@@ -1,17 +1,17 @@
-import {BaseLocalStorage} from './src/index';
+import * as util from './src/common/utils.js';
+import * as time from './src/common/time.js';
+import * as money from './src/common/money.js';
+import * as number from './src/common/number.js';
+import * as dom from './src/common/dom.js';
+import * as regExp from './src/common/regExp.js';
+import BaseLocalStorage from './src/common/BaseLoaclStorage.js';
 
-var a = new BaseLocalStorage();
-console.log(a)
-
-// if (module.hot) {
-    // module.hot.accept();
-    // module.hot.dispose(function() {
-    //   $("#app").children('.app').remove();
-      // component(); // 重新渲染页面后，component 更新 click 事件处理
-    // });
-    // module.hot.accept('./print.js', function() {
-    //   document.body.removeChild(element);
-    //   element = component(); // 重新渲染页面后，component 更新 click 事件处理
-    //   document.body.appendChild(element);
-    // })
-//   }
+export {
+  util,
+  time,
+  money,
+  number,
+  dom,
+  regExp,
+  BaseLocalStorage
+}
