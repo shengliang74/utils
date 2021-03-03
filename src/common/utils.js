@@ -47,19 +47,19 @@ export function isIphone() {
 }
 
 // 判断ios终端
-const isIos = () => {
+export function isIos() {
     let u = navigator.userAgent
     return !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
 }
 
 // 判断Android终端
-const isAndroid = () => {
+export function isAndroid() {
     let u = navigator.userAgent
     return u.indexOf('Android') > -1 || u.indexOf('Adr') > -1
 }
 
 // 是否为浏览器环境
-const isInBrowser = function(){
+export function isInBrowser(){
     return typeof window !== 'undefined';
 }
 
@@ -264,13 +264,13 @@ export function downFile(url, params) {
 }
 
 // 获取整数部分
-const getInteger = (num) => {
+export function getInteger(num){
     const arr = `${num}`.split('.')
     return arr[0]
 }
 
 // 获取小数部分
-const getDecimal = (num) => {
+export function getDecimal(num){
     const arr = `${num}`.split('.')
     return arr[1]
 }
