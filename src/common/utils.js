@@ -289,3 +289,53 @@ export function isSupportSticky() {
     }
     return false;
 }
+
+// copy 对象 start
+
+function copyObj(obj) {
+    if(!isObject(obj)){
+        return {}
+    }
+    let temp = {};
+    for(let key in obj){
+        if(obj.hasOwnProperty(key)){
+            let temp2 = obj[key];
+            if(isObject(temp2)){
+                temp[key] = copyObj(temp2)
+            }else if(Array.isArray(temp2)){
+                temp[key] = copyArray(temp2)
+            }else{
+                temp[key] = obj[key]
+            }
+        }
+    }
+    return temp
+}
+
+function copyArray(arr){
+    if(!Array.isArray(arr)){
+        return []
+    }
+    return arr.map(it => {
+        if(Array.isArray(it)){
+            return copyArray(it)
+        }
+        if(isObject(it)){
+            return copyObj(it)
+        }
+        return it
+    });
+}
+
+// copy 对象
+export function copy(obj) {
+    if(Array.isArray(obj)){
+        return copyArray(obj)
+    }
+    if(isObject(obj)){
+        return copyObj(obj)
+    }
+    return
+}
+
+// copy 对象 end
