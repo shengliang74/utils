@@ -339,3 +339,52 @@ export function copy(obj) {
 }
 
 // copy 对象 end
+
+/**
+ * 拼接数组中的父子元素
+ * @param arr 需要格式化的数组
+ * @param compareFn 判断是否为父子关系函数，compareFn(parent, child)
+ * @param 在父对象下放子元素的key名称
+ * @returns 返回拼接后的数组
+*/
+export function formatParentChildRelation(arr, compareFn, childKeyName){
+    if(!Array.isArray(arr) || typeof compareFn !== 'function'){
+        return
+    }
+    arr.forEach((item, index) => {
+        arr.forEach(it => {
+            if(compareFn.call(null, item, it)){
+                let child = item[childKeyName];
+                if(Array.isArray(child)){
+                    item[childKeyName].push(it)
+                }else{
+                    item[childKeyName] = [it]
+                }
+                it._isFindParent = true;
+            }
+        })
+    })
+    let newArr = [];
+    arr.forEach(item => {
+        if(!item._isFindParent){
+            newArr.push(item)
+        }
+    })
+    return newArr;
+}
+
+
+/**
+ * 替换url上的query参数
+ * @param url 需要替换的url
+ * @param key 需要替换的key
+ * @param value 替换后的value
+ * @returns 返回替换后的url
+*/
+export function replaceUrlQuery(url, key, value){
+    if(!url || !key){
+        return
+    }
+    const newReg = new RegExp(`${key}=([0-9A-z\%\.]{0,})`)
+    return url.replace(newReg,`${key}=${value}`)
+}
