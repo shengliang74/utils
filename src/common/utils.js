@@ -388,3 +388,36 @@ export function replaceUrlQuery(url, key, value){
     const newReg = new RegExp(`${key}=([0-9A-z\%\.]{0,})`)
     return url.replace(newReg,`${key}=${value}`)
 }
+
+/**
+ * 判断一个对象上是否有某个属性
+ * @param obj 对象或数组
+ * @param pathStr 属性的引用路径
+ * @param defaultValue 找不到属性时的默认值
+ * @returns 引用属性或默认值
+*/
+export function has(obj, pathStr, defaultValue=null){
+    if(!obj || !pathStr){
+        return defaultValue
+    }
+    try {
+        const pathArr =  pathStr.split(/\.|\]|\[/);
+        let value = obj;
+        pathArr.forEach(it => {
+            if(it){
+                if(/\w+/.test(it) && !Array.isArray(value)){
+                    value = value[it];
+                    return
+                }
+                if(/\d+/.test(it) && Array.isArray(value)){
+                    value = value[Number(it, 10)];
+                    return
+                }
+            }
+        })
+        return value;
+    } catch (e) {
+        console && console.error(e);
+        return defaultValue
+    }
+}
