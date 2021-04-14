@@ -18,6 +18,11 @@ export function isEmptyObject(data) {
     }
 };
 
+// 是否为undefined
+export function isUndefined(data) {
+    return typeof data === 'undefined';
+};
+
 // 是否为函数
 export function isFunction(obj) {
     return Object.prototype.toString.call(obj) === '[object Function]'
