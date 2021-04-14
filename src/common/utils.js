@@ -390,7 +390,7 @@ export function replaceUrlQuery(url, key, value){
     if(!url || !key){
         return
     }
-    const newReg = new RegExp(`${key}=([0-9A-z\%\.]{0,})`)
+    const newReg = new RegExp(`${key}=([0-9A-z\%\.\-]{0,})`)
     return url.replace(newReg,`${key}=${value}`)
 }
 
