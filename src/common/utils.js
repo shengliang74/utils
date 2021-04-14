@@ -250,7 +250,7 @@ export function transJsonToArr(json, keyName, valueName) {
 }
 
 // 下载文件
-export function downFile(url, params) {
+export function downFile(url, params, target="_blank") {
     let search = null, href = null;
     if (isObject(params) && !isEmptyObject(params)) {
         search = Object.keys(params).map(key => `${key}=${encodeURIComponent(isUndefined(params[key]) ? '' : params[key])}`).join('&');
@@ -263,6 +263,7 @@ export function downFile(url, params) {
     const tempLink = document.createElement('a');
     tempLink.style.display = 'none';
     tempLink.href = href;
+    tempLink.target = target;
     document.body.appendChild(tempLink);
     tempLink.click()
     document.body.removeChild(tempLink);
