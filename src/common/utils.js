@@ -18,6 +18,11 @@ export function isEmptyObject(data) {
     }
 };
 
+// 是否为undefined
+export function isUndefined(data) {
+    return typeof data === 'undefined';
+};
+
 // 是否为函数
 export function isFunction(obj) {
     return Object.prototype.toString.call(obj) === '[object Function]'
@@ -245,7 +250,7 @@ export function transJsonToArr(json, keyName, valueName) {
 }
 
 // 下载文件
-export function downFile(url, params) {
+export function downFile(url, params, target="_blank") {
     let search = null, href = null;
     if (isObject(params) && !isEmptyObject(params)) {
         search = Object.keys(params).map(key => `${key}=${encodeURIComponent(isUndefined(params[key]) ? '' : params[key])}`).join('&');
@@ -258,6 +263,7 @@ export function downFile(url, params) {
     const tempLink = document.createElement('a');
     tempLink.style.display = 'none';
     tempLink.href = href;
+    tempLink.target = target;
     document.body.appendChild(tempLink);
     tempLink.click()
     document.body.removeChild(tempLink);
@@ -385,7 +391,7 @@ export function replaceUrlQuery(url, key, value){
     if(!url || !key){
         return
     }
-    const newReg = new RegExp(`${key}=([0-9A-z\%\.]{0,})`)
+    const newReg = new RegExp(`${key}=([0-9A-z\%\.\-]{0,})`)
     return url.replace(newReg,`${key}=${value}`)
 }
 
