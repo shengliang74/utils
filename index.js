@@ -1,5 +1,5 @@
 import * as util from './src/common/utils.js';
-import * as date from './src/common/date.js';
+import date from './src/common/date.js';
 import * as money from './src/common/money.js';
 import * as number from './src/common/number.js';
 import * as dom from './src/common/dom.js';

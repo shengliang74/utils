@@ -1,4 +1,4 @@
-(function () {
+export default function date() {
     /**
    * 去掉日期的时间信息
    * @return {Date} 去掉时间信息的日期
@@ -206,4 +206,4 @@
         sec = sec < 10 ? '0' + sec : sec;
         return { day, hour, min, sec };
     }
-})();
+};
