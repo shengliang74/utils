@@ -205,9 +205,32 @@ export function firstLetterCapitalize(str) {
     return str ? str.replace(str[0], str[0].toUpperCase()) : '';
 }
 
-// 字符串去掉空格
+// 字符串去掉首尾空格
 export function stringTrim(str) {
     return (str === undefined || str === null) ? '' : str.replace(/(^\s*)|(\s*$)/g, '').replace(/(^　*)|(　*$)/g, '')
+}
+
+// 字符串去掉首尾空格
+export function trim(str){
+    if(str === undefined || str === null){
+        return ''
+    }
+    str.replace(/\s+/,'').replace(/\s+$/,'');
+}
+// 去除首空格
+export function trimStart(str){
+    if(str === undefined || str === null){
+        return ''
+    }
+    str.replace(/\s+/,'');
+}
+
+// 去除尾空格
+export function trimEnd(str){
+    if(str === undefined || str === null){
+        return ''
+    }
+    str.replace(/\s+$/,'');
 }
 
 // 锁屏
