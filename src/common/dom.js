@@ -9,7 +9,7 @@ export function setHtml(ele, html) {
 
 // appendHtml添加网页元素
 export function AppendHtml(ele, html) {
-    var div = document.createElement('div')
+    let div = document.createElement('div')
     setHtml(div, html)
     while (div.childNodes.length > 0) {
         ele.appendChild(div.childNodes[0])
@@ -60,8 +60,8 @@ export function getWidth(ele) {
                 return getBodyWidth()
             }
         } else if (ele.style.width.indexOf('%') > 0) {
-            var parentWidth = GetWidth(ele.parentNode)
-            var rate = parseFloat(ele.style.width)
+            let parentWidth = GetWidth(ele.parentNode)
+            let rate = parseFloat(ele.style.width)
             return parentWidth * rate / 100
         } else {
             return parseFloat(ele.style.width)
@@ -73,7 +73,7 @@ export function getWidth(ele) {
 // 设置宽度
 export function setWidth(ele, width) {
     if (ele != null && ele.style != undefined) {
-        var w = parseFloat(width)
+        let w = parseFloat(width)
         if (!isNaN(w)) {
             ele.style.width = w.toString() + 'px'
         }
@@ -90,8 +90,8 @@ export function getHeight(ele) {
                 return getBodyHeight()
             }
         } else if (ele.style.height.indexOf('%') > 0) {
-            var parentHeight = getHeight(ele.parentNode)
-            var rate = parseFloat(ele.style.height)
+            let parentHeight = getHeight(ele.parentNode)
+            let rate = parseFloat(ele.style.height)
             return parentHeight * rate / 100
         } else {
             return parseFloat(ele.style.height)
@@ -103,7 +103,7 @@ export function getHeight(ele) {
 // 设置高度
 export function setHeight(ele, height) {
     if (ele != null && ele.style != undefined) {
-        var h = parseFloat(height)
+        let h = parseFloat(height)
         if (!isNaN(h)) {
             ele.style.height = h.toString() + 'px'
         }
@@ -114,7 +114,7 @@ export function setHeight(ele, height) {
 export function setStyle(ele, style) {
     if (ele != null && ele.style != undefined) {
         if (isObject(style)) {
-            for (var key in style) {
+            for (let key in style) {
                 ele.style[key] = style[key]
             }
         }
@@ -172,7 +172,7 @@ export function bindEvent(ele, eventName, fn) {
 
 // 加载CSS
 export function loadCss(id, content) {
-    var newStyle = document.createElement('style')
+    let newStyle = document.createElement('style')
     newStyle.type = 'text/css'
     newStyle.id = id
     if (typeof newStyle.styleSheet != 'undefined') {
@@ -185,17 +185,17 @@ export function loadCss(id, content) {
 
 // 加载JS
 export function loadJS(url, callback, errcallback) {
-    var documentHeader = document.head || document.getElementsByTagName('head')[0]
+    let documentHeader = document.head || document.getElementsByTagName('head')[0]
     // 防止单页应用加载多次
-    var addSign = true
-    var scripts = document.getElementsByTagName('script')
-    for (var i = 0; i < scripts.length; i++) {
+    let addSign = true
+    let scripts = document.getElementsByTagName('script')
+    for (let i = 0; i < scripts.length; i++) {
         if (scripts[i] && scripts[i].src && scripts[i].src.indexOf(url) != -1) {
             addSign = false
         }
     }
     if (addSign) {
-        var script = document.createElement('script')
+        let script = document.createElement('script')
         script.type = 'text/javascript'
         script.charset = 'utf-8'
         script.async = true
@@ -216,15 +216,15 @@ export function loadJS(url, callback, errcallback) {
 // 加载CSS引用
 export function loadLink(url) {
     // 防止单页应用加载多条
-    var addSign = true
-    var links = document.getElementsByTagName('link')
-    for (var i = 0; i < links.length; i++) {
+    let addSign = true
+    let links = document.getElementsByTagName('link')
+    for (let i = 0; i < links.length; i++) {
         if (links[i] && links[i].href && links[i].href.indexOf(url) != -1) {
             addSign = false
         }
     }
     if (addSign) {
-        var link = document.createElement('link')
+        let link = document.createElement('link')
         link.type = 'text/css'
         link.rel = 'stylesheet'
         link.href = url
@@ -234,8 +234,8 @@ export function loadLink(url) {
 
 // js删除script
 export function removeScript(src) {
-    var scripts = document.getElementsByTagName('script')
-    for (var i = 0; i < scripts.length; i++) {
+    let scripts = document.getElementsByTagName('script')
+    for (let i = 0; i < scripts.length; i++) {
         if (scripts[i] && scripts[i].src && scripts[i].src.indexOf(src) != -1) {
             scripts[i].parentNode.removeChild(scripts[i])
         }
@@ -244,8 +244,8 @@ export function removeScript(src) {
 
 // js删除link文件
 export function removelink(href) {
-    var links = document.getElementsByTagName('link')
-    for (var i = 0; i < links.length; i++) {
+    let links = document.getElementsByTagName('link')
+    for (let i = 0; i < links.length; i++) {
         if (links[i] && links[i].href && links[i].href.indexOf(href) != -1) {
             links[i].parentNode.removeChild(links[i])
         }

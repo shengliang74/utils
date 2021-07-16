@@ -14,3 +14,13 @@ export function isIdNumber(id){
     const idNumber = /(^[1-9]\d{5}(18|19|20)\d{2}(((0[1-9])|10|11|12)([0-2][1-9]|10|20|30|31))\d{3}[0-9Xx]$)|(^[0-9Xx]{15}$)/;
     return idNumber.test(id)
 }
+
+//是否存在中文
+export function isHaveChinese(data) {
+    return /[\u4e00-\u9fa5]/.test(data);
+}
+
+//是否全是中文
+export function isChinese(data) {
+    return /^[\u4e00-\u9fa5]+$/.test(data);
+}

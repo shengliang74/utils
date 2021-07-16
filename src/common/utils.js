@@ -243,16 +243,6 @@ export function unLockPage() {
     document.body.removeEventListener('touchmove', e => e.preventDefault());
 }
 
-//是否存在中文
-export function isHaveChinese(data) {
-    return /[\u4e00-\u9fa5]/.test(data) ? true : false;
-}
-
-//是否全是中文
-export function isChinese(data) {
-    return /^[\u4e00-\u9fa5]+$/.test(data) ? true : false;
-}
-
 // json转arr
 export function transJsonToArr(json, keyName, valueName) {
     let arr = [];
