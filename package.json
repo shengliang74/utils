@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "webpack-dev-server --open --config webpack.dev.config.js",
     "build": "webpack --config webpack.prod.config.js",
-    "test": "jest"
+    "test": "jest",
+    "test2": "jest ./src/test/dateFn.test.js"
   },
   "repository": {
     "type": "git",

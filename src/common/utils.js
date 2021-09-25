@@ -9,6 +9,16 @@ export function isObject(obj) {
     return Object.prototype.toString.call(obj) === '[object Object]'
 }
 
+// 是否为时间
+export function isDate(obj) {
+    return Object.prototype.toString.call(obj) === '[object Date]'
+}
+
+// 是否字符串
+export function isString(obj) {
+    return Object.prototype.toString.call(obj) === '[object String]'
+}
+
 // 是否为空对象
 export function isEmptyObject(data) {
     try {
@@ -438,5 +448,20 @@ export function has(obj, pathStr, defaultValue=null){
     } catch (e) {
         console && console.error(e);
         return defaultValue
+    }
+}
+
+// 格式化时间
+function formatDate(date){
+    if(isDate(date)){
+        return date;
+    }
+    if(typeof date === 'number' && !Number.isNaN(date)){
+        return new Date(date);
+    }
+    try{
+        return new Date(date);
+    }catch(err){
+        return null;
     }
 }
