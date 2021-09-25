@@ -221,7 +221,7 @@ export function isLeap(date) {
 
 /**
 * 获取时分秒
-* @param time 日期,以秒为单位
+* @param time 两个时间的差值,以秒为单位
 * @param isNeedDay 是否需要天
 * @returns {Object} 包含 天 小时 分 秒 的对象
 */
