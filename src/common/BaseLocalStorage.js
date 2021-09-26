@@ -1,6 +1,7 @@
-var BaseLocalStorage = function(preId, timeSign){
+function BaseLocalStorage (preId, timeSign, storage){
     this.preId = preId || '';
     this.timeSign = timeSign || '|-|';
+    this.storage = storage || window.localStorage;
 }
 BaseLocalStorage.prototype = {
     status: {
@@ -9,7 +10,7 @@ BaseLocalStorage.prototype = {
         OVERFLOW:2,
         TIMEOUT:3
     },
-    storage: localStorage || window.localStorage,
+    storage: BaseLocalStorage.storage,
     getKey: function(key){
         return this.preId+key;
     },

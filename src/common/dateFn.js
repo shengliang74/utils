@@ -1,6 +1,6 @@
 // 日期的方法，相较于date.js 可直接引用不用初始化
 
-import {isDate, formatDate} from './utils'
+import {isDate} from './utils'
 
 // 清除时分秒
 export function clearTime(date){
