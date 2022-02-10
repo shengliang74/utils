@@ -1,11 +1,11 @@
-import * as util from './src/common/utils.js';
-// import date from './src/common/date.js';
-import * as dateFn from './src/common/dateFn.js';
-import * as money from './src/common/money.js';
-import * as number from './src/common/number.js';
-import * as dom from './src/common/dom.js';
-import * as regExp from './src/common/regExp.js';
-import BaseLocalStorage from './src/common/BaseLocalStorage.js';
+import * as util from './lib/utils.js';
+// import date from './lib/date.js';
+import * as dateFn from './lib/dateFn.js';
+import * as money from './lib/money.js';
+import * as number from './lib/number.js';
+import * as dom from './lib/dom.js';
+import * as regExp from './lib/regExp.js';
+import BaseLocalStorage from './lib/BaseLocalStorage.js';
 
 export {
   util,

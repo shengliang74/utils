@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import {dateFn} from "../../index";
+import {dateFn} from "../index";
 
 const clearTime = dateFn.clearTime;
 // Demo

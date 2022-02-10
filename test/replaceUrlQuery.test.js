@@ -2,7 +2,7 @@
 /**
  * @jest-environment jsdom
  */
-import { util } from "../../../index";
+import { util } from "../index";
 const { replaceUrlQuery } = util || {};
 
 // demo1 替换数字
