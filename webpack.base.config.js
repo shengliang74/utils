@@ -4,8 +4,9 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
     output: {
-        path: path.join(__dirname, './dist'),
-        filename: 'utils.js',
+        path: path.join(__dirname, './lib'),
+        chunkFilename: '[name].js',
+        filename: '[name].js',
     },
     module: {
         rules: [
