@@ -184,33 +184,54 @@ export function loadCss(id, content) {
 }
 
 // 加载JS
-export function loadJS(url, callback, errcallback) {
-    let documentHeader = document.head || document.getElementsByTagName('head')[0]
-    // 防止单页应用加载多次
-    let addSign = true
-    let scripts = document.getElementsByTagName('script')
-    for (let i = 0; i < scripts.length; i++) {
-        if (scripts[i] && scripts[i].src && scripts[i].src.indexOf(url) != -1) {
-            addSign = false
-        }
+// interface JsInfo {
+//   url: string,
+//   isAsync?: boolean,
+//   isDefer?: boolean,
+//   customAttr?: {
+//     [key: string]: string 
+//   }
+// }
+export function loadJS(jsInfo, callback, errcallback) {
+  let documentHeader = document.head || document.getElementsByTagName('head')[0];
+  let scripts = document.getElementsByTagName('script');
+  // 防止单页应用加载多次
+  let addSign = true;
+  const {url, isAsync, isDefer, customAttr} = jsInfo;
+  for (let i = 0; i < scripts.length; i++) {
+    if (scripts[i] && scripts[i].src && scripts[i].src.indexOf(url) != -1) {
+      addSign = false
     }
-    if (addSign) {
-        let script = document.createElement('script')
-        script.type = 'text/javascript'
-        script.charset = 'utf-8'
-        script.async = true
-        script.src = url
-        documentHeader.appendChild(script)
-        script.onload = function () {
-            callback && callback()
-        }
-        script.onerror = function () {
-            errcallback && errcallback()
-            documentHeader.removeChild(script)
-        }
-    } else {
-        callback && callback()
-    }
+  }
+  // 已添加过
+  if(!addSign){
+    callback && callback()
+    return;
+  }
+  // 未添加过
+  let script = document.createElement('script')
+  script.type = 'text/javascript';
+  script.charset = 'utf-8';
+  if(isAsync){
+    script.async = true;
+  }
+  if(isDefer){
+    script.defer = true;
+  }
+  if(customAttr){
+    Object.keys(customAttr).forEach(item => {
+      script.setAttribute(item, customAttr[item]);
+    })
+  }
+  script.src = url;
+  documentHeader.appendChild(script);
+  script.onload = function () {
+    callback && callback()
+  }
+  script.onerror = function () {
+    errcallback && errcallback();
+    documentHeader.removeChild(script);
+  }
 }
 
 // 加载CSS引用
