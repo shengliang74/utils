@@ -185,7 +185,7 @@ export function loadCss(id, content) {
 
 // 加载JS
 // interface JsInfo {
-//   url: string,
+//   src: string,
 //   isAsync?: boolean,
 //   isDefer?: boolean,
 //   customAttr?: {
@@ -193,13 +193,13 @@ export function loadCss(id, content) {
 //   }
 // }
 export function loadJS(jsInfo, callback, errcallback) {
-  let documentHeader = document.head || document.getElementsByTagName('head')[0];
+ let documentHeader = document.head || document.getElementsByTagName('head')[0];
   let scripts = document.getElementsByTagName('script');
   // 防止单页应用加载多次
   let addSign = true;
-  const {url, isAsync, isDefer, customAttr} = jsInfo;
+  const {src, isAsync, isDefer, customAttr} = jsInfo;
   for (let i = 0; i < scripts.length; i++) {
-    if (scripts[i] && scripts[i].src && scripts[i].src.indexOf(url) != -1) {
+    if (scripts[i] && scripts[i].src && scripts[i].src.indexOf(src) != -1) {
       addSign = false
     }
   }
@@ -223,7 +223,7 @@ export function loadJS(jsInfo, callback, errcallback) {
       script.setAttribute(item, customAttr[item]);
     })
   }
-  script.src = url;
+  script.src = src;
   documentHeader.appendChild(script);
   script.onload = function () {
     callback && callback()
